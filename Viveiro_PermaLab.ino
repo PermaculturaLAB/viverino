@@ -1,7 +1,6 @@
 /*
-Sistema de rega e monitoramento automatizado
-
-Adaptado do projeto de Grady Hillhouse (03/2015), 
+Sistema de rega e monitoramento automatizado desenvolvido para instalação em hortas residenciais e sistemas agroflorestais de
+pequeno e médio porte
 */
 
 #include "DHT.h"
@@ -37,8 +36,8 @@ float Umidade = 0;           //umidade relativa (%)
 float TempAr = 0;            //temperatura do ar (degrees F)
 float IndexCalor = 0;          //indice de calor (degrees F)
 float LuzSol = 0;          //luz solar em lux
-bool rega = false;        //????
-bool regadoHoje = false;    //??
+bool rega = false;        
+bool regadoHoje = false;    
 DateTime now;
 File logfile;
 
@@ -221,7 +220,7 @@ void loop() {
   
   IndexCalor = dht.computeHeatIndex(TempAr,Umidade); //indice  calculado a partir da umidade e temp do ar.
   
-  //Esta é uma conversão sem refinamento que tenta calibrar usando uma lanterna de um brilho "conhecido" (IMPORTANTE REVER)
+  //Esta é uma conversão sem refinamento que tenta calibrar usando uma lanterna de um brilho conhecido (pode ser substituído por sensor UV
   LuzSol = pow(((((150 * 3.3)/(analogRead(LuzsolPin)*(3.3/1024))) - 150) / 70000),-1.25); //esses dados foram inseridos a partir de um exemplo... precisa ser revisto!!
   delay(20);
   
